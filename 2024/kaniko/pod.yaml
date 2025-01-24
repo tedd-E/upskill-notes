@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+  namespace: kaniko
+spec:
+  containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
+      args:
+        - "--dockerfile=Dockerfile"
+        - "--context=s3://atmos-scratch-capitola-us-west-2-load-balancer-logs/context.tar.gz"
+        - "--destination=776719623202.dkr.ecr.region.amazonaws.com/capitola-test:kaniko-image"
+      volumeMounts:
+        # when not using instance role
+        - name: aws-secret
+          mountPath: /root/.aws/
+  restartPolicy: Never
+  volumes:
+    # when not using instance role
+    - name: aws-secret
+      secret:
+        secretName: aws-secret
