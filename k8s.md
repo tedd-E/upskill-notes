@@ -74,9 +74,6 @@ Kubernetes controllers are software that watches and synchronizes resources in K
 
 `kubelet` is a single binary that runs on every worker node in a cluster. It is responsible for managing any pods scheduled to the node, and tracking the status of the nodes and pods. The networking functionality in the kubelet comes from API interactions with a CNI plugin on the node.
 
-## Kubernetes DNS
-still in progress...!
-
 
 ## Conclusion 
 
